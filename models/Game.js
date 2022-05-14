@@ -14,7 +14,7 @@ const gameSchema = new mongoose.Schema({
             required: [true, "Games must have a summary"]
         },
         likes: {
-            type: number,
+            type: Number,
             default: 0
           },
         release_system: {
