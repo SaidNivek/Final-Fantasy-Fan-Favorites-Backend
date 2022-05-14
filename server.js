@@ -44,7 +44,13 @@ app.post('/game', async (req, res) => {
 })
 
 // READ / get game route
-
+app.get('/game', async (req, res) => {
+    try {
+        res.json(await Game.find({}))
+    } catch (error) {
+        res.status(400).json(error)
+    }
+})
 
 // UPDATE game route
 
