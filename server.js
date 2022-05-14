@@ -61,7 +61,14 @@ app.put('/game/:id', async (req, res) => {
     }
 })
 
-// DELETE people route
+// DELETE game route
+app.delete('/game/:id', async (req, res) => {
+    try {
+        res.json(await Game.findByIdAndDelete(req.params.id))
+    } catch (error) {
+        res.status(400).json(error)
+    }
+})
 
 // LISTENER
 app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
