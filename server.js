@@ -31,7 +31,7 @@ const { Game } = require('./models');
 
 // test router
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.send('Final Fantasy Fan Favorites API')
 })
 
 // CREATE game route
