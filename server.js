@@ -24,7 +24,8 @@ app.use(express.json())
 require('./config/db.connection')
 
 // MODELS
-const database = require('./models')
+const database = require('./models');
+const { Game } = require('./models');
 
 // ROUTES
 
@@ -33,6 +34,21 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
+// CREATE game route
+app.post('/game', async (req, res) => {
+    try {
+        res.json(await Game.create(req.body))
+    } catch (error) {
+        res.status(400).json(error)
+    }
+})
+
+// READ / get game route
+
+
+// UPDATE game route
+
+// DELETE people route
 
 // LISTENER
 app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
