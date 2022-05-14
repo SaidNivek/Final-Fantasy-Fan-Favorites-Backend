@@ -53,6 +53,13 @@ app.get('/game', async (req, res) => {
 })
 
 // UPDATE game route
+app.put('/game/:id', async (req, res) => {
+    try {
+        res.json(await Game.findByIdAndUpdate(req.params.id, req.body))
+    } catch (error) {
+        res.status(400).json(error)
+    }
+})
 
 // DELETE people route
 
