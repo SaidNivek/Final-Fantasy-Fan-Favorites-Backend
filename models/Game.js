@@ -5,6 +5,10 @@ const gameSchema = new mongoose.Schema({
         type: String,
         required: [true, "Games must be named"]
       },
+        number: {
+          type: Number,
+          required: [true, "Enter the number, not in numerals (such as 1 or 15)"]
+        },
         logo: {
             type: String,
             required: [true, "Games must have an image"]
