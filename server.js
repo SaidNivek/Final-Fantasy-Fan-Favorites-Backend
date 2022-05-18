@@ -28,7 +28,7 @@ require('./config/db.connection')
 
 // MODELS
 const database = require('./models');
-const { Game } = require('./models');
+const { Game, User } = require('./models');
 
 // ROUTES
 
