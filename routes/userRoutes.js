@@ -8,13 +8,45 @@ const asyncHandler = require('express-async-handler')
 router.use(express.json())
 router.use(cors())
 
+const loginUser = asyncHandler(async (req, res) => {
+    const {username, password} = req.body
+    // Check for user email
+    const user = await User.findOne({username})
+    // If the username exists by checking for their email AND
+    // the hashed PW (stored in the DB) matches the PW given, then we can login    
+    if(user && (await bcrypt.compare(password, user.password))) {
+        res.json({
+            _id: user.id,
+            username: user.username,
+            email: user.email
+        })
+    } else {
+        res.status(400)
+        throw new Error('Invalid credentials')
+    }
+})
+
 // Authenticate a user
 // Route /user/login
-router.post('/login', asyncHandler(async (req, res) => {
+router.post('/login', loginUser)
 
-
-    res.json({message: 'Login User'})
-}))
+// asyncHandler(async (req, res) => {
+//     const {username, password} = req.body
+//     // Check for user email
+//     const user = await User.findOne({username})
+//     // If the username exists by checking for their email AND
+//     // the hashed PW (stored in the DB) matches the PW given, then we can login    
+//     if(user && (await bcrypt.compare(password, user.password))) {
+//         res.json({
+//             _id: user.id,
+//             username: user.username,
+//             email: user.email
+//         })
+//     } else {
+//         res.status(400)
+//         throw new Error('Invalid credentials')
+//     }
+// }))
 
 // Get user data
 // Route /user/me
