@@ -20,6 +20,9 @@ app.use(cors())
 app.use(morgan('dev'))
 app.use(express.json())
 
+// ROUTES
+app.use('/user', require('./routes/userRoutes'))
+
 // DATABASE CONNECTION
 require('./config/db.connection')
 
