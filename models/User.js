@@ -4,16 +4,17 @@ const userSchema = new mongoose.Schema ({
 
     username: {
         type: String,
-        required: true,
+        required: [true, "Please add a name"],
         unique: true,
     },
     password: {
         type: String,
-        required: true,
+        required: [true, "Please add a password"],
     },
     email: {
         type: String,
-        required: true
+        required: [true, "Please add an email"],
+        unique: true
     },
     likes: {
         type: Array,
@@ -27,11 +28,11 @@ const userSchema = new mongoose.Schema ({
         type: String,
         default: "user"
     },
-    joined: {
-        type: Date,
-        default: Date.now,
-    },
-});
+},
+{
+    timestamps: true
+}
+);
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
