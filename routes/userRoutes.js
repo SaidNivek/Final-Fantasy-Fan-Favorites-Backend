@@ -49,7 +49,8 @@ router.get('/me', protect, asyncHandler(async (req, res) => {
     res.status(200).json({
         id: _id,
         username: username,
-        email: email
+        email: email,
+        role: role
     })
 }))
 
@@ -85,7 +86,7 @@ router.post('/register', asyncHandler(async (req, res) => {
         res.status(201).json({
             _id: user._id,
             username: user.username,
-            email: user.email,
+            role: user.role,
             token: generateToken(user._id),
         })
     } else {
